@@ -73,16 +73,19 @@ const getAllBooks = () => ({
 
 // GET BOOKS BY ID
 const getBookByIdHandler = (request, h) => {
-  const { bookId } = request.params;
-  const book = data.filter((n) => n.id === bookId)[0];
+  const { id } = request.params;
+
+  const book = data.filter((n) => n.id === id)[0];
+
   if (book !== undefined) {
     return {
       status: "success",
       data: {
-        data,
+        book,
       },
     };
   }
+
   const response = h.response({
     status: "fail",
     message: "Buku tidak ditemukan",
